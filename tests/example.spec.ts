@@ -9,7 +9,6 @@ const test = testWithSynpress(phantomFixtures(basicSetup))
 // Extract expect function from test
 const { expect } = test
 
-
 // Define a basic test case
 test('should connect wallet to the Phantom Test Dapp', async ({
   context,
@@ -43,16 +42,16 @@ test('should connect wallet to the Phantom Test Dapp', async ({
    
   const phantomAdSelectors = ['text=Got It', 'text=Convert SOL', 'text=Back'];
   for(let i = 0; i < phantomAdSelectors.length; i++) {
+    // Wait for ad animation
     await page.waitForTimeout(2000);
+    
     for (const selector of phantomAdSelectors) {
+      // iterate over selectors and see if they exist via the .count() method
       const elementCount = await page.locator(selector).count();
-      try {
-        if (elementCount > 0) {
-          await page.locator(selector).click();
-        }
-      }
-      catch (e) {
-        console.log(`Element with selector "${selector}" not found.`);
+
+      // If an element exists, try to click it
+      if (elementCount > 0) {
+        await page.locator(selector).click();
       }
     }
   } 
