@@ -43,8 +43,10 @@ export function AppHeader({ links = [] }: { links: { label: string; path: string
           {showMenu ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </Button>
 
-        <div className="hidden md:flex items-center gap-4">
-          <WalletButton />
+        <div  className="hidden md:flex items-center gap-4">
+          <button id='WalletButton'>
+            <WalletButton />
+          </button>
           <ClusterUiSelect />
           <ThemeSelect />
         </div>
